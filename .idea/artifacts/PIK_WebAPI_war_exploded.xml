@@ -1,0 +1,13 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="PIK-WebAPI:war exploded">
+    <output-path>$PROJECT_DIR$/out/artifacts/PIK_WebAPI_war_exploded</output-path>
+    <root id="root">
+      <element id="javaee-facet-resources" facet="PIK-WebAPI/web/Web" />
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="PIK-WebAPI" />
+        </element>
+      </element>
+    </root>
+  </artifact>
+</component>

@@ -1,11 +1,9 @@
 package pikweb;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.servlet.ModelAndView;
-import org.springframework.ui.ModelMap;
 import java.util.*;
 import com.google.gson.*;
 
@@ -14,10 +12,10 @@ import com.google.gson.*;
  * Created by Artur on 25.03.2017.
  */
 
-@Controller
+@RestController
 public class HomeController {
 
-    @RequestMapping(value = "/get", method = RequestMethod.GET)
+    @RequestMapping(value = "/get", method = RequestMethod.GET, produces = "text/plain")
     public String getPoints() throws Exception {
         Storage st = new Storage();
         List<PointEntity> ls = st.getAllPoints();

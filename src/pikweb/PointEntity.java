@@ -12,9 +12,11 @@ public class PointEntity {
     private double latitude;
     private double longitude;
     private String name;
+    private int owner;
+    private UserEntity userByOwner;
 
     @Id
-    @Column(name = "id")
+    @Column(name = "id", nullable = false)
     public int getId() {
         return id;
     }
@@ -24,7 +26,7 @@ public class PointEntity {
     }
 
     @Basic
-    @Column(name = "latitude")
+    @Column(name = "latitude", nullable = false, precision = 0)
     public double getLatitude() {
         return latitude;
     }
@@ -34,7 +36,7 @@ public class PointEntity {
     }
 
     @Basic
-    @Column(name = "longitude")
+    @Column(name = "longitude", nullable = false, precision = 0)
     public double getLongitude() {
         return longitude;
     }
@@ -44,7 +46,7 @@ public class PointEntity {
     }
 
     @Basic
-    @Column(name = "name")
+    @Column(name = "name", nullable = true, length = -1)
     public String getName() {
         return name;
     }
@@ -79,5 +81,15 @@ public class PointEntity {
         result = 31 * result + (int) (temp ^ (temp >>> 32));
         result = 31 * result + (name != null ? name.hashCode() : 0);
         return result;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "owner", referencedColumnName = "id", nullable = false)
+    public UserEntity getUserByOwner() {
+        return userByOwner;
+    }
+
+    public void setUserByOwner(UserEntity userByOwner) {
+        this.userByOwner = userByOwner;
     }
 }

@@ -1,6 +1,7 @@
 package pikweb;
 
 import javax.persistence.*;
+import java.util.Collection;
 
 /**
  * Created by Artur on 25.03.2017.
@@ -11,9 +12,10 @@ public class UserEntity {
     private int id;
     private String login;
     private String passhash;
+    private Collection<PointEntity> pointsById;
 
     @Id
-    @Column(name = "id")
+    @Column(name = "id", nullable = false)
     public int getId() {
         return id;
     }
@@ -23,7 +25,7 @@ public class UserEntity {
     }
 
     @Basic
-    @Column(name = "login")
+    @Column(name = "login", nullable = false, length = -1)
     public String getLogin() {
         return login;
     }
@@ -33,7 +35,7 @@ public class UserEntity {
     }
 
     @Basic
-    @Column(name = "passhash")
+    @Column(name = "passhash", nullable = false, length = -1)
     public String getPasshash() {
         return passhash;
     }
@@ -62,5 +64,14 @@ public class UserEntity {
         result = 31 * result + (login != null ? login.hashCode() : 0);
         result = 31 * result + (passhash != null ? passhash.hashCode() : 0);
         return result;
+    }
+
+    @OneToMany(mappedBy = "userByOwner")
+    public Collection<PointEntity> getPointsById() {
+        return pointsById;
+    }
+
+    public void setPointsById(Collection<PointEntity> pointsById) {
+        this.pointsById = pointsById;
     }
 }

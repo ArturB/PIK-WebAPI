@@ -8,7 +8,7 @@
       <case-sensitivity plain-identifiers="lower" quoted-identifiers="exact" />
       <secret-storage>master_key</secret-storage>
       <user-name>pik</user-name>
-      <resolve-scope>postgres:public,pik</resolve-scope>
+      <resolve-scope>postgres:pik,public</resolve-scope>
     </data-source>
   </component>
 </project>

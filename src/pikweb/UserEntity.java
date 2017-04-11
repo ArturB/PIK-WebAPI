@@ -12,7 +12,7 @@ public class UserEntity {
     private int id;
     private String login;
     private String passhash;
-    private Collection<PointEntity> pointsById;
+    private transient Collection<PointEntity> pointsById;
 
     @Id
     @Column(name = "id", nullable = false)

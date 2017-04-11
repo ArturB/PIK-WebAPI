@@ -4,10 +4,10 @@
         "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
 <hibernate-configuration>
     <session-factory>
-        <property name="connection.url">jdbc:postgresql://postgres:t40RPgMoJjIeVRrDUAqNBYIi4zcsn2hQ@horton.elephantsql.com:5432/cfyfiuxz</property>
+        <property name="connection.url">jdbc:postgresql://localhost:5432/postgres</property>
         <property name="connection.driver_class">org.postgresql.Driver</property>
-        <!-- <property name="connection.username">cfyfiuxz</property>
-        <property name="connection.password">t40RPgMoJjIeVRrDUAqNBYIi4zcsn2hQ</property> -->
+        <property name="connection.username">postgres</property>
+        <property name="connection.password">pik</property>
         <!-- DB schema will be updated if needed -->
         <!-- <property name="hbm2ddl.auto">update</property> -->
 

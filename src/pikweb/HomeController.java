@@ -19,10 +19,10 @@ public class HomeController {
     @RequestMapping(value = "/HomeController", method = RequestMethod.GET, produces = "text/plain")
     @ResponseBody
     public String getPoints() throws Exception {
-        Storage st = new Storage();
+        /*Storage st = new Storage();
         Gson g = new Gson();
-        return g.toJson(new Storage().getAllData());
-        //return "HomeController";
+        return g.toJson(new Storage().getAllData());*/
+        return "HomeController";
     }
 
 }

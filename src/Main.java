@@ -6,6 +6,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 import pikweb.PointEntity;
 import pikweb.UserEntity;
+import pikweb.Storage;
 
 import java.util.*;
 
@@ -20,5 +21,8 @@ public class Main {
 
     public static void main(final String[] args) throws Exception {
         System.out.println("Main class");
+        Storage storage = new Storage();
+        System.out.println(storage.getAllUsers());
     }
+
 }

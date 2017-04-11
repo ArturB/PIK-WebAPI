@@ -13,7 +13,7 @@ public class PointEntity {
     private double longitude;
     private String name;
     private int owner;
-    private UserEntity userByOwner;
+    private transient UserEntity userByOwner;
 
     @Id
     @Column(name = "id", nullable = false)

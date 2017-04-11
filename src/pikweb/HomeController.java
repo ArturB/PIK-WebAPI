@@ -1,5 +1,6 @@
 package pikweb;
 
+import org.hibernate.Hibernate;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,9 +20,8 @@ public class HomeController {
     @ResponseBody
     public String getPoints() throws Exception {
         Storage st = new Storage();
-        List<PointEntity> ls = st.getAllPoints();
         Gson g = new Gson();
-        return g.toJson(ls);
+        return g.toJson(new Storage().getAllData());
         //return "HomeController";
     }
 

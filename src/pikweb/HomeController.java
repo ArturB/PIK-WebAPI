@@ -15,12 +15,14 @@ import com.google.gson.*;
 @RestController
 public class HomeController {
 
-    @RequestMapping(value = "/get", method = RequestMethod.GET, produces = "text/plain")
+    @RequestMapping(value = "/HomeController", method = RequestMethod.GET, produces = "text/plain")
+    @ResponseBody
     public String getPoints() throws Exception {
         Storage st = new Storage();
         List<PointEntity> ls = st.getAllPoints();
         Gson g = new Gson();
         return g.toJson(ls);
+        //return "HomeController";
     }
 
 }

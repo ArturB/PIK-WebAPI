@@ -790,7 +790,7 @@
       <workItem from="1490473496575" duration="1319000" />
       <workItem from="1490519427518" duration="5672000" />
       <workItem from="1492073316730" duration="275000" />
-      <workItem from="1492582278352" duration="247000" />
+      <workItem from="1492582278352" duration="291000" />
     </task>
     <task id="LOCAL-00001" summary="Initial commit">
       <created>1490397280031</created>
@@ -813,11 +813,18 @@
       <option name="project" value="LOCAL" />
       <updated>1490525270159</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Spring MVC + DB filled with data">
+      <created>1492582534000</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1492582534000</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="19597000" />
+    <option name="totallyTimeSpent" value="19641000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1938" height="1048" extended-state="6" />

@@ -22,7 +22,6 @@ public class PointEntityTest {
     private PointEntity point;
     private PointEntity anotherPoint;
     private UserEntity user;
-
     /* create simple user and two identical points
     *  before each test */
     @Before

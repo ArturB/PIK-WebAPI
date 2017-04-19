@@ -56,4 +56,8 @@ public class Storage {
             session.close();
         }
     }
+
+    public PIKdata getAllData() throws Exception {
+        return new PIKdata(getAllUsers(), getAllPoints());
+    }
 }

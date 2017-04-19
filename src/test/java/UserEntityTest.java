@@ -1,3 +1,5 @@
+package test.java;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
@@ -7,6 +9,7 @@ import org.junit.Test;
 //import org.junit.jupiter.api.Test;
 import pikweb.UserEntity;
 
+import org.junit.Assert;
 import static org.junit.Assert.*;
 
 /**
@@ -41,36 +44,36 @@ public class UserEntityTest {
         newUser = (UserEntity) session.get(UserEntity.class, 99999);
         closeSession();
 
-        assertNotNull(newUser);
-        assertEquals(newUser.getId(), user.getId());
-        assertEquals(newUser.getLogin(), user.getLogin());
-        assertEquals(newUser.getPasshash(), user.getPasshash());
+        Assert.assertNotNull(newUser);
+        Assert.assertEquals(newUser.getId(), user.getId());
+        Assert.assertEquals(newUser.getLogin(), user.getLogin());
+        Assert.assertEquals(newUser.getPasshash(), user.getPasshash());
     }
 
     @Test
     public void equalsMethodWithNullArgumentTest() {
-        assertFalse(user.equals(null));
+        Assert.assertFalse(user.equals(null));
     }
 
     @Test
     public void equalsMethodDifferentIDTest() {
         anotherUser.setId(user.getId()+1);
 
-        assertFalse(user.equals(anotherUser));
+        Assert.assertFalse(user.equals(anotherUser));
     }
 
     @Test
     public void equalsMethodDifferentLoginTest() {
         anotherUser.setLogin(user.getLogin()+'a');
 
-        assertFalse(user.equals(anotherUser));
+        Assert.assertFalse(user.equals(anotherUser));
     }
 
     @Test
     public void equalsMethodDifferentPasshashTest() {
         anotherUser.setPasshash(user.getPasshash()+'a');
 
-        assertFalse(user.equals(anotherUser));
+        Assert.assertFalse(user.equals(anotherUser));
     }
 
     private void openSession() {
@@ -81,7 +84,7 @@ public class UserEntityTest {
             ourSessionFactory = configuration.buildSessionFactory();
             session = ourSessionFactory.openSession();
         } catch (Throwable ex) {
-            fail();
+            Assert.fail(ex.getMessage());
         }
     }
 

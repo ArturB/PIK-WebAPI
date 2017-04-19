@@ -1,3 +1,5 @@
+package test.java;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
@@ -8,8 +10,8 @@ import pikweb.UserEntity;
 
 import java.io.Serializable;
 
+import org.junit.Assert;
 import static org.junit.Assert.*;
-import static org.junit.Assert.assertFalse;
 
 /**
  * Created by grzesiek on 15.04.17.
@@ -57,45 +59,45 @@ public class PointEntityTest {
         newPoint = (PointEntity) session.get(PointEntity.class, point.getId());
         closeSession();
 
-        assertNotNull(newPoint);
-        assertEquals(newPoint.getId(), point.getId());
-        assertEquals(newPoint.getLatitude(), point.getLatitude(), 0.1);
-        assertEquals(newPoint.getLongitude(), point.getLongitude(), 0.1);
-        assertEquals(newPoint.getName(), point.getName());
+        Assert.assertNotNull(newPoint);
+        Assert.assertEquals(newPoint.getId(), point.getId());
+        Assert.assertEquals(newPoint.getLatitude(), point.getLatitude(), 0.1);
+        Assert.assertEquals(newPoint.getLongitude(), point.getLongitude(), 0.1);
+        Assert.assertEquals(newPoint.getName(), point.getName());
         assertEquals(newPoint.getUserByOwner(), point.getUserByOwner());
     }
 
     @Test
     public void equalsMethodWithNullArgumentTest() {
-        assertFalse(point.equals(null));
+        Assert.assertFalse(point.equals(null));
     }
 
     @Test
     public void equalsMethodDifferentIDTest() {
         point.setId(point.getId()+1);
 
-        assertFalse(point.equals(anotherPoint));
+        Assert.assertFalse(point.equals(anotherPoint));
     }
 
     @Test
     public void equalsMethodDifferentLatitudeTest() {
         point.setLatitude(point.getLatitude()+1);
 
-        assertFalse(point.equals(anotherPoint));
+        Assert.assertFalse(point.equals(anotherPoint));
     }
 
     @Test
     public void equalsMethodDifferentLongitudeTest() {
         point.setLongitude(point.getLongitude()+1);
 
-        assertFalse(point.equals(anotherPoint));
+        Assert.assertFalse(point.equals(anotherPoint));
     }
 
     @Test
     public void equalsMethodDifferentNameTest() {
         point.setName(point.getName() + "A");
 
-        assertFalse(point.equals(anotherPoint));
+        Assert.assertFalse(point.equals(anotherPoint));
     }
 
     private void openSession() {
@@ -106,7 +108,7 @@ public class PointEntityTest {
             ourSessionFactory = configuration.buildSessionFactory();
             session = ourSessionFactory.openSession();
         } catch (Throwable ex) {
-            fail();
+            Assert.fail(ex.getMessage());
         }
     }
 

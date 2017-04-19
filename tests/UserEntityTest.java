@@ -3,6 +3,8 @@ import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 import org.junit.Before;
 import org.junit.Test;
+//import org.testng.annotations.Test;
+//import org.junit.jupiter.api.Test;
 import pikweb.UserEntity;
 
 import static org.junit.Assert.*;

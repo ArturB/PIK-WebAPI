@@ -37,6 +37,29 @@ public class Storage {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     /**
      * Get list of all points in the database.
      * @return List of all points in the database.

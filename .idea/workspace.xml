@@ -2,15 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="24182526-da99-4e25-b115-262538e214c3" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/pikweb/InvalidLoginException.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/compiler.xml" afterPath="$PROJECT_DIR$/.idea/compiler.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/PIK-WebAPI.iml" afterPath="$PROJECT_DIR$/PIK-WebAPI.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pom.xml" afterPath="$PROJECT_DIR$/pom.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/pikweb/PointEntity.java" afterPath="$PROJECT_DIR$/src/main/java/pikweb/PointEntity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/pikweb/RESTController.java" afterPath="$PROJECT_DIR$/src/main/java/pikweb/RESTController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/pikweb/Storage.java" afterPath="$PROJECT_DIR$/src/main/java/pikweb/Storage.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/pikweb/UserEntity.java" afterPath="$PROJECT_DIR$/src/main/java/pikweb/UserEntity.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/pikweb/package-info.java" afterPath="$PROJECT_DIR$/src/main/java/pikweb/package-info.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/static/allclasses-frame.html" afterPath="$PROJECT_DIR$/src/main/resources/static/allclasses-frame.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/static/allclasses-noframe.html" afterPath="$PROJECT_DIR$/src/main/resources/static/allclasses-noframe.html" />
@@ -92,10 +84,10 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-      <file leaf-file-name="RESTController.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="RESTController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/pikweb/RESTController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-418">
+            <state relative-caret-position="1430">
               <caret line="113" column="88" lean-forward="false" selection-start-line="113" selection-start-column="88" selection-end-line="113" selection-end-column="88" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -139,11 +131,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="package-info.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="package-info.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/pikweb/package-info.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-356">
-              <caret line="29" column="7" lean-forward="false" selection-start-line="29" selection-start-column="7" selection-end-line="29" selection-end-column="7" />
+            <state relative-caret-position="22">
+              <caret line="1" column="47" lean-forward="false" selection-start-line="1" selection-start-column="47" selection-end-line="1" selection-end-column="47" />
               <folding />
             </state>
           </provider>
@@ -277,8 +269,8 @@
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/src/main/java/pikweb/InvalidLoginException.java" />
         <option value="$PROJECT_DIR$/src/main/java/pikweb/Storage.java" />
-        <option value="$PROJECT_DIR$/src/main/java/pikweb/package-info.java" />
         <option value="$PROJECT_DIR$/src/main/java/pikweb/RESTController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/pikweb/package-info.java" />
       </list>
     </option>
   </component>
@@ -1084,7 +1076,7 @@
       <workItem from="1493467632186" duration="4754000" />
       <workItem from="1493472550138" duration="947000" />
       <workItem from="1493473524995" duration="2951000" />
-      <workItem from="1493476584579" duration="21913000" />
+      <workItem from="1493476584579" duration="22025000" />
     </task>
     <task id="LOCAL-00001" summary="Initial commit">
       <created>1490397280031</created>
@@ -1212,7 +1204,14 @@
       <option name="project" value="LOCAL" />
       <updated>1493496648952</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="users and sessions">
+      <created>1493506083235</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1493506083235</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1227,7 +1226,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="70392000" />
+    <option name="totallyTimeSpent" value="70504000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1938" height="1048" extended-state="6" />
@@ -1281,7 +1280,8 @@
     <MESSAGE value="gradlew support" />
     <MESSAGE value="spring boot + javadoc" />
     <MESSAGE value="maven/gradle exec tasks" />
-    <option name="LAST_COMMIT_MESSAGE" value="maven/gradle exec tasks" />
+    <MESSAGE value="users and sessions" />
+    <option name="LAST_COMMIT_MESSAGE" value="users and sessions" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1731,14 +1731,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/pikweb/package-info.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-356">
-          <caret line="29" column="7" lean-forward="false" selection-start-line="29" selection-start-column="7" selection-end-line="29" selection-end-column="7" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/pikweb/Storage.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="282">
@@ -1751,11 +1743,19 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/pikweb/RESTController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-418">
+        <state relative-caret-position="1430">
           <caret line="113" column="88" lean-forward="false" selection-start-line="113" selection-start-column="88" selection-end-line="113" selection-end-column="88" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/pikweb/package-info.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="22">
+          <caret line="1" column="47" lean-forward="false" selection-start-line="1" selection-start-column="47" selection-end-line="1" selection-end-column="47" />
+          <folding />
         </state>
       </provider>
     </entry>

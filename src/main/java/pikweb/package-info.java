@@ -1,5 +1,5 @@
 /**
- * Ta aplikacja dostarcza WebAPI wspópracującer z interfejsem naszej aplikacji na PIK.
+ * Ta aplikacja dostarcza WebAPI współpracujące z interfejsem naszej aplikacji na PIK.
  *
  * Aplikacja wykonana jest jako usługa sieciowa, w standardzie REST - w odpowiedzi na zapytania zwraca pobrane z bazy danych informacje w formacie JSON.
  *

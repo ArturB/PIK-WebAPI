@@ -1,21 +1,16 @@
 package pikweb;
 
 import org.hibernate.HibernateException;
-import org.hibernate.Metamodel;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.query.Query;
 
-import javax.persistence.metamodel.EntityType;
-import java.util.Collection;
 import java.util.List;
 
 /**
- * Created by Artur on 26.03.2017.
+ * DAO object. Allows to work with the database.
  */
-
-
 public class Storage {
     private static final SessionFactory ourSessionFactory;
 
@@ -31,10 +26,22 @@ public class Storage {
         }
     }
 
+    /**
+     * Get a database session.
+     * @return Current database connection session.
+     * @throws HibernateException
+     */
     public static Session getSession() throws HibernateException {
         return ourSessionFactory.openSession();
     }
 
+
+
+    /**
+     * Get list of all points in the database.
+     * @return List of all points in the database.
+     * @throws Exception
+     */
     public List<PointEntity> getAllPoints() throws Exception {
         final Session session = getSession();
         try {
@@ -46,6 +53,11 @@ public class Storage {
         }
     }
 
+    /**
+     * Get list of all users in the database.
+     * @return List of all users in the database.
+     * @throws Exception
+     */
     public List<UserEntity> getAllUsers() throws Exception {
         final Session session = getSession();
         try {
@@ -57,6 +69,11 @@ public class Storage {
         }
     }
 
+    /**
+     * Get whole database from server - all points and all users.
+     * @return Whole databse data - all points and all users.
+     * @throws Exception
+     */
     public PIKdata getAllData() throws Exception {
         return new PIKdata(getAllUsers(), getAllPoints());
     }

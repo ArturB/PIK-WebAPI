@@ -13,7 +13,7 @@ public class PointEntity {
     /**
      * Point primary key.
      */
-    private int id;
+    private Integer id;
 
     /**
      * Geographic coordinates - point latitude.
@@ -37,6 +37,7 @@ public class PointEntity {
 
     /**
      * Point owner - Java object. Relationship (foreign key) is lazily resolved by default.
+     * Don't serialized, because relationships are lazily instantiated by default.
      */
     @JsonIgnore
     private transient UserEntity userByOwner;
@@ -46,8 +47,9 @@ public class PointEntity {
      * @return point primary key.
      */
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
@@ -55,7 +57,7 @@ public class PointEntity {
      * Set point primary key.
      * @param id New primary key.
      */
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

@@ -11,9 +11,11 @@ import java.util.Collection;
 @Entity
 @Table(name = "user", schema = "pik", catalog = "postgres")
 public class UserEntity {
-    private int id;
+    private Integer id;
     private String login;
     private String passhash;
+
+    //we don't serialize db relationships because they are lazily instantiated by default
     @JsonIgnore
     private transient Collection<PointEntity> pointsById;
 
@@ -22,8 +24,9 @@ public class UserEntity {
      * @return User primary key.
      */
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
@@ -31,7 +34,7 @@ public class UserEntity {
      * Set user primary key.
      * @param id primary key to set.
      */
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -59,6 +62,7 @@ public class UserEntity {
      */
     @Basic
     @Column(name = "passhash", nullable = false, length = -1)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public String getPasshash() {
         return passhash;
     }

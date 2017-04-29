@@ -1,10 +1,15 @@
 package pikweb;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,69 +21,117 @@ import java.util.List;
 @RestController
 public class RESTController {
 
+    @Autowired
+    private HttpSession httpSession;
+
     /**
      * Add new user to database.
      * @param name Username
      * @param passhash Password hash
-     * @return 200 OK and empty body if all right, error status 465 and Exception message in response body otherwise (e.g. username not unique).
+     * @return 200 OK and empty body if all right, error status 400 and Exception message in response body otherwise (e.g. username not unique).
      * @throws Exception
      */
     @RequestMapping(value = "/add/user", method = RequestMethod.GET)
-    public String addUser(
-        @RequestParam(value = "login", required = true) String name,
-        @RequestParam(value = "passhash", required = true) String passhash
+    public ResponseEntity<String> addUser(
+        @RequestParam(value = "login") String name,
+        @RequestParam(value = "passhash") String passhash
     ) throws Exception {
-
-        return "";
+        UserEntity user = new UserEntity();
+        user.setLogin(name);
+        user.setPasshash(passhash);
+        try {
+            new Storage().addUser(user);
+            return new ResponseEntity<>(
+                    HttpStatus.OK.toString(),
+                    HttpStatus.OK
+            );
+        }
+        catch(Throwable e) {
+            return new ResponseEntity<>(
+                    HttpStatus.BAD_REQUEST.value() + ": " + e.getMessage(),
+                    HttpStatus.BAD_REQUEST
+            );
+        }
     }
 
     /**
      * Check if user with given username and password exists and set session for him if all right.
      * @param name Username
      * @param passhash Password hash
-     * @return 200 OK and logged user object in response body if credentials are valid, error status 466 and empty response body otherwise.
+     * @return 200 OK and logged user object in response body if credentials are valid, error status 400 and empty response body otherwise.
      * @throws Exception
      */
     @RequestMapping(value = "/login/user", method = RequestMethod.GET)
-    public UserEntity loginUser(
-            @RequestParam(value = "login", required = true) String name,
-            @RequestParam(value = "passhash", required = true) String passhash
+    public ResponseEntity<String> loginUser(
+            @RequestParam(value = "login") String name,
+            @RequestParam(value = "passhash") String passhash,
+            HttpServletRequest request
     ) throws Exception {
-
-        return new UserEntity();
+        UserEntity user = new UserEntity();
+        user.setLogin(name);
+        user.setPasshash(passhash);
+        try {
+            if(new Storage().checkCredentials(user)) {
+                httpSession.invalidate();
+                httpSession = request.getSession();
+                httpSession.setAttribute("username", user.getLogin());
+                return new ResponseEntity<>(HttpStatus.OK.toString(), HttpStatus.OK);
+            }
+            else {
+                return new ResponseEntity<>(
+                        HttpStatus.BAD_REQUEST.value() + ": "
+                                + new InvalidLoginException().getMessage(),
+                        HttpStatus.BAD_REQUEST
+                );
+            }
+        }
+        catch(Exception e) {
+            return new ResponseEntity<>(
+                    HttpStatus.BAD_REQUEST.value() + ": " + e.getMessage(),
+                    HttpStatus.BAD_REQUEST
+            );
+        }
 
     }
 
     /**
      * Logout user session if it exists.
-     * @param name Login of user to logout
      * @return 200 OK as confirmation.
      * @throws Exception
      */
     @RequestMapping(value = "/logout/user", method = RequestMethod.GET)
-    public String logoutUser(
-            @RequestParam(value = "login", required = true) String name
+    public ResponseEntity<String> logoutUser(
     ) throws Exception {
-
-        return "";
-
+        String username = (String)httpSession.getAttribute("username");
+        httpSession.invalidate();
+        return new ResponseEntity<>(username + ", " + HttpStatus.OK.toString(), HttpStatus.OK);
     }
 
     /**
      * Delete user from database if only given password is valid.
      * @param name Username of user to delete.
      * @param passhash Password hash.
-     * @return 200 OK and empty response body if credentials are valid, error status 467 and Exception message otherwise.
+     * @return 200 OK and empty response body if credentials are valid, error status 400 and Exception message otherwise.
      * @throws Exception
      */
     @RequestMapping(value = "/delete/user", method = RequestMethod.GET)
-    public String deleteUser(
-            @RequestParam(value = "login", required = true) String name,
-            @RequestParam(value = "passhash", required = true) String passhash
+    public ResponseEntity<String> deleteUser(
+            @RequestParam(value = "login") String name,
+            @RequestParam(value = "passhash") String passhash
     ) throws Exception {
-
-        return "";
-
+        UserEntity user = new UserEntity();
+        user.setLogin(name);
+        user.setPasshash(passhash);
+        try {
+            new Storage().deleteUser(user);
+            return new ResponseEntity<>(HttpStatus.OK.toString(), HttpStatus.OK);
+        }
+        catch(Throwable e) {
+            return new ResponseEntity<>(
+                    HttpStatus.BAD_REQUEST.value() + ": " + e.getMessage(),
+                    HttpStatus.BAD_REQUEST
+            );
+        }
     }
 
     /**
@@ -142,14 +195,4 @@ public class RESTController {
     }
 
 
-    /*@RequestMapping(value = "/HomeController", method = RequestMethod.GET)
-    public PIKdata getPoints() throws Exception {
-
-        PIKdata result = new Storage().getAllData();
-        Hibernate.initialize(result);
-        return result;
-        //return "HomeController";
-
-    }
-    */
 }

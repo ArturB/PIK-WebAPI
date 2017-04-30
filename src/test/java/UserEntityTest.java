@@ -34,7 +34,7 @@ public class UserEntityTest {
         anotherUser.setLogin(user.getLogin());
         anotherUser.setPasshash(user.getPasshash());
     }
-
+/*
     @Test
     public void addNewUserTest() {
         UserEntity newUser;
@@ -49,7 +49,7 @@ public class UserEntityTest {
         Assert.assertEquals(newUser.getLogin(), user.getLogin());
         Assert.assertEquals(newUser.getPasshash(), user.getPasshash());
     }
-
+*//*
     @Test
     public void equalsMethodWithNullArgumentTest() {
         Assert.assertFalse(user.equals(null));
@@ -75,6 +75,7 @@ public class UserEntityTest {
 
         Assert.assertFalse(user.equals(anotherUser));
     }
+    */
 
     private void openSession() {
         try {

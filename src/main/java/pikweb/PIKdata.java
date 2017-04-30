@@ -1,15 +1,26 @@
 package pikweb;
-import org.springframework.security.core.userdetails.User;
 
-import java.util.*;
+import java.util.List;
 
 /**
- * Created by Artur on 11.04.2017.
+ * Class representing whole database.
  */
 public class PIKdata {
+
+    /**
+     * List of all users.
+     */
     public List<UserEntity> users;
+    /**
+     * List of all points.
+     */
     public List<PointEntity> points;
 
+    /**
+     * Constructor.
+     * @param users_ - list of users in the database
+     * @param points_ - list of points in the database
+     */
     PIKdata(List<UserEntity> users_, List<PointEntity> points_) {
         users = users_;
         points = points_;

@@ -3,7 +3,16 @@ language: java
 jdk:
   - oraclejdk8
 
-script: "mvn cobertura:cobertura"
+before_install:
+ - chmod +x gradlew
 
 after_success:
+  - if [ -e ./gradlew ]; then ./gradlew jacocoTestReport;else gradle jacocoTestReport;fi
   - bash <(curl -s https://codecov.io/bash)
+
+after_failure:
+  - if [ -e ./gradlew ]; then ./gradlew jacocoTestReport;else gradle jacocoTestReport;fi
+  - bash <(curl -s https://codecov.io/bash)
+
+notifications:
+  email: false

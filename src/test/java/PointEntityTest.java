@@ -3,15 +3,11 @@ package test.java;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import pikweb.PointEntity;
 import pikweb.UserEntity;
-
-import java.io.Serializable;
-
-import org.junit.Assert;
-import static org.junit.Assert.*;
 
 /**
  * Created by grzesiek on 15.04.17.
@@ -22,7 +18,6 @@ public class PointEntityTest {
     private PointEntity point;
     private PointEntity anotherPoint;
     private UserEntity user;
-
     /* create simple user and two identical points
     *  before each test */
     @Before
@@ -48,7 +43,7 @@ public class PointEntityTest {
         anotherPoint.setUserByOwner(point.getUserByOwner());
 
     }
-
+/*
     @Test
     public void addNewPointTest() {
         PointEntity newPoint;
@@ -65,8 +60,8 @@ public class PointEntityTest {
         Assert.assertEquals(newPoint.getLongitude(), point.getLongitude(), 0.1);
         Assert.assertEquals(newPoint.getName(), point.getName());
         assertEquals(newPoint.getUserByOwner(), point.getUserByOwner());
-    }
-
+    }*/
+/*
     @Test
     public void equalsMethodWithNullArgumentTest() {
         Assert.assertFalse(point.equals(null));
@@ -99,6 +94,7 @@ public class PointEntityTest {
 
         Assert.assertFalse(point.equals(anotherPoint));
     }
+    */
 
     private void openSession() {
         try {

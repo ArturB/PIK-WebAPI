@@ -7,143 +7,24 @@
       <Current>1</Current>
       <Visible>1</Visible>
     </database>
-    <schema id="3" parent="2" name="pik">
-      <ObjectId>16454</ObjectId>
-      <IntrospectionTimestamp>2017-05-16.23:42:51.072</IntrospectionTimestamp>
-      <IntrospectionStateNumber>681</IntrospectionStateNumber>
-      <Current>1</Current>
-      <Visible>1</Visible>
-    </schema>
-    <schema id="4" parent="2" name="pg_catalog">
+    <schema id="3" parent="2" name="pg_catalog">
       <ObjectId>11</ObjectId>
+      <Current>1</Current>
     </schema>
-    <schema id="5" parent="2" name="pg_toast">
+    <schema id="4" parent="2" name="pg_toast">
       <ObjectId>99</ObjectId>
     </schema>
-    <schema id="6" parent="2" name="public">
-      <ObjectId>2200</ObjectId>
-    </schema>
-    <schema id="7" parent="2" name="pg_temp_1">
+    <schema id="5" parent="2" name="pg_temp_1">
       <ObjectId>11848</ObjectId>
     </schema>
-    <schema id="8" parent="2" name="pg_toast_temp_1">
+    <schema id="6" parent="2" name="pg_toast_temp_1">
       <ObjectId>11849</ObjectId>
     </schema>
-    <schema id="9" parent="2" name="information_schema">
+    <schema id="7" parent="2" name="information_schema">
       <ObjectId>12113</ObjectId>
     </schema>
-    <sequence id="10" parent="3" name="point_id_seq">
-      <ObjectId>16461</ObjectId>
-      <StateNumber>591</StateNumber>
-      <SequenceIdentity>1</SequenceIdentity>
-    </sequence>
-    <sequence id="11" parent="3" name="user_id_seq">
-      <ObjectId>16469</ObjectId>
-      <StateNumber>594</StateNumber>
-      <SequenceIdentity>1</SequenceIdentity>
-    </sequence>
-    <table id="12" parent="3" name="point">
-      <ObjectId>16455</ObjectId>
-      <StateNumber>681</StateNumber>
-    </table>
-    <table id="13" parent="3" name="user">
-      <ObjectId>16463</ObjectId>
-      <StateNumber>681</StateNumber>
-    </table>
-    <column id="14" parent="12" name="id">
-      <Position>1</Position>
-      <DataType>integer|0</DataType>
-      <NotNull>1</NotNull>
-      <StateNumber>664</StateNumber>
-      <DefaultExpression>nextval(&apos;point_id_seq&apos;::regclass)</DefaultExpression>
-    </column>
-    <column id="15" parent="12" name="latitude">
-      <Position>2</Position>
-      <DataType>double precision|0</DataType>
-      <NotNull>1</NotNull>
-      <StateNumber>590</StateNumber>
-    </column>
-    <column id="16" parent="12" name="longitude">
-      <Position>3</Position>
-      <DataType>double precision|0</DataType>
-      <NotNull>1</NotNull>
-      <StateNumber>590</StateNumber>
-    </column>
-    <column id="17" parent="12" name="name">
-      <Position>4</Position>
-      <DataType>text|0</DataType>
-      <StateNumber>590</StateNumber>
-    </column>
-    <column id="18" parent="12" name="owner">
-      <Position>5</Position>
-      <DataType>integer|0</DataType>
-      <NotNull>1</NotNull>
-      <StateNumber>590</StateNumber>
-    </column>
-    <index id="19" parent="12" name="point_pkey">
-      <ObjectId>16475</ObjectId>
-      <ColNames>id</ColNames>
-      <Unique>1</Unique>
-    </index>
-    <key id="20" parent="12" name="point_pkey">
-      <ObjectId>16476</ObjectId>
-      <ColNames>id</ColNames>
-      <UnderlyingIndexName>point_pkey</UnderlyingIndexName>
-      <Primary>1</Primary>
-    </key>
-    <foreign-key id="21" parent="12" name="fkldgo1wxsvra0k9wasmcs8smpc">
-      <ObjectId>16497</ObjectId>
-      <ColNames>owner</ColNames>
-      <RefTableName>user</RefTableName>
-      <RefKeyName>user_pkey</RefKeyName>
-      <RefColNames>id</RefColNames>
-    </foreign-key>
-    <foreign-key id="22" parent="12" name="owner_id">
-      <ObjectId>16479</ObjectId>
-      <ColNames>owner</ColNames>
-      <RefTableName>user</RefTableName>
-      <RefKeyName>user_pkey</RefKeyName>
-      <RefColNames>id</RefColNames>
-    </foreign-key>
-    <column id="23" parent="13" name="id">
-      <Position>1</Position>
-      <DataType>integer|0</DataType>
-      <NotNull>1</NotNull>
-      <StateNumber>665</StateNumber>
-      <DefaultExpression>nextval(&apos;user_id_seq&apos;::regclass)</DefaultExpression>
-    </column>
-    <column id="24" parent="13" name="login">
-      <Position>2</Position>
-      <DataType>text|0</DataType>
-      <NotNull>1</NotNull>
-      <StateNumber>593</StateNumber>
-    </column>
-    <column id="25" parent="13" name="passhash">
-      <Position>3</Position>
-      <DataType>text|0</DataType>
-      <NotNull>1</NotNull>
-      <StateNumber>593</StateNumber>
-    </column>
-    <index id="26" parent="13" name="user_pkey">
-      <ObjectId>16477</ObjectId>
-      <ColNames>id</ColNames>
-      <Unique>1</Unique>
-    </index>
-    <index id="27" parent="13" name="login_unique">
-      <ObjectId>16473</ObjectId>
-      <ColNames>login</ColNames>
-      <Unique>1</Unique>
-    </index>
-    <key id="28" parent="13" name="user_pkey">
-      <ObjectId>16478</ObjectId>
-      <ColNames>id</ColNames>
-      <UnderlyingIndexName>user_pkey</UnderlyingIndexName>
-      <Primary>1</Primary>
-    </key>
-    <key id="29" parent="13" name="login_unique">
-      <ObjectId>16474</ObjectId>
-      <ColNames>login</ColNames>
-      <UnderlyingIndexName>login_unique</UnderlyingIndexName>
-    </key>
+    <schema id="8" parent="2" name="pik">
+      <ObjectId>16401</ObjectId>
+    </schema>
   </database-model>
 </dataSource>

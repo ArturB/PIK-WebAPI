@@ -223,7 +223,8 @@ public class Storage {
     public UserEntity getUserByLogin(String uLogin) throws Exception {
         final Session session = getSession();
         try {
-            final Query query = session.createQuery("from " + "UserEntity" + " where " + "login =" + uLogin);
+            final Query query = session.createQuery("from " + "UserEntity" + " where " + "login = :login");
+            query.setParameter("login", uLogin);
             List<UserEntity> ls = query.list();
 
             return ls.get(0);

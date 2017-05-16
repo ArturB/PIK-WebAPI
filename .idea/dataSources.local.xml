@@ -11,13 +11,7 @@
       <resolve-scope>postgres:pik,public</resolve-scope>
     </data-source>
     <data-source name="hibernate.cfg.xml/Hibernate" uuid="0f51544c-6ff2-48e6-83aa-9cf22c4f2823">
-      <database-info product="PostgreSQL" version="9.6.2" jdbc-version="4.0" driver-name="PostgreSQL Native Driver" driver-version="PostgreSQL 9.4 JDBC4 (build 1201)">
-        <identifier-quote-string>&quot;</identifier-quote-string>
-      </database-info>
-      <case-sensitivity plain-identifiers="lower" quoted-identifiers="exact" />
-      <user-name>pik</user-name>
-      <user-password>dfc0dfcedfc8dfc9df90dfdadfc5dfd9dfdedfcddfd8dfcfdfd9dfdbdfc6df90df85df85dfc6dfc5dfc9dfcbdfc6dfc2dfc5dfd9dfdedf90df9fdf9edf99df98df85dfdadfc5dfd9dfdedfcddfd8dfcfdfd9</user-password>
-      <resolve-scope>postgres:pik,public</resolve-scope>
+      <database-info product="" version="" jdbc-version="" driver-name="" driver-version="" />
     </data-source>
   </component>
 </project>

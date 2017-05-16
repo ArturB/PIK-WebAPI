@@ -108,26 +108,6 @@ public class Storage {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     /**
      * Get list of all points in the database.
      * @return List of all points in the database.
@@ -143,6 +123,25 @@ public class Storage {
             session.close();
         }
     }
+
+    /**
+     * Get list of points belonging to given user in the database.
+     * @param user User whose points method gets.
+     * @return List of points belonging to given user in the database.
+     * @throws Exception
+     */
+    public List<PointEntity> getUserPoints(UserEntity user) throws Exception {
+        final Session session = getSession();
+        try {
+            final Query query = session.createQuery("from " + "PointEntity PE" + " where " + "PE.owner" + "=" + "user.id");
+            List<PointEntity> ls = query.list();
+            return ls;
+        } finally {
+            session.close();
+        }
+    }
+
+
 
     /**
      * Get list of all users in the database.

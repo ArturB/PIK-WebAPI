@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -19,6 +20,7 @@ import java.util.List;
  */
 
 @RestController
+@CrossOrigin
 public class RESTController {
 
     @Autowired
@@ -72,8 +74,12 @@ public class RESTController {
         user.setPasshash(passhash);
         try {
             if(new Storage().checkCredentials(user)) {
-                httpSession.invalidate();
-                httpSession = request.getSession();
+                try {
+                    httpSession.invalidate();
+                }
+                catch(IllegalStateException e) { }
+
+                httpSession = request.getSession(true);
                 httpSession.setAttribute("username", user.getLogin());
                 return new ResponseEntity<>(HttpStatus.OK.toString(), HttpStatus.OK);
             }
@@ -102,8 +108,12 @@ public class RESTController {
     @RequestMapping(value = "/logout/user", method = RequestMethod.GET)
     public ResponseEntity<String> logoutUser(
     ) throws Exception {
-        String username = (String)httpSession.getAttribute("username");
-        httpSession.invalidate();
+        String username = null;
+        try {
+            username = (String)httpSession.getAttribute("username");
+            httpSession.invalidate();
+        }
+        catch(IllegalStateException e) { }
         return new ResponseEntity<>(username + ", " + HttpStatus.OK.toString(), HttpStatus.OK);
     }
 

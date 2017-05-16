@@ -168,7 +168,7 @@ public class RESTController {
      * @throws Exception
      */
     @RequestMapping(value = "/add/user/points", method = RequestMethod.GET)
-    public String addUserPoints(
+    public ResponseEntity<String> addUserPoints(
             @RequestParam(value = "longitude") double pLongitude,
             @RequestParam(value = "latitude") double pLatitude,
             @RequestParam(value = "name") String pName,

@@ -155,7 +155,7 @@ public class RESTController {
 
     ) throws Exception {
         String userName = null;
-        userName = httpSession.getAttribute("username");
+        userName = (String)httpSession.getAttribute("username");
         List<PointEntity> points = new Storage().getUserPoints(userName);
 
         return points;

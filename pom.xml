@@ -110,7 +110,7 @@
                 <configuration>
                     <noqualifier>all</noqualifier>
                     <reportOutputDirectory>
-                        ./src/main/resources/doc
+                        ./src/main/resources/static
                     </reportOutputDirectory>
                     <destDir>api</destDir>
                 </configuration>

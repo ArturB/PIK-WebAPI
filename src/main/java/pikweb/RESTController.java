@@ -146,40 +146,47 @@ public class RESTController {
 
     /**
      * Return all points of logged user.
-     * TODO: by Julita Ołtusek
-     * @return List of points of logged in user.
+     * @return List of points of logged user.
      * @throws Exception
      */
     @RequestMapping(value = "/get/user/points", method = RequestMethod.GET)
     public List<PointEntity> userPoints(
 
     ) throws Exception {
+        List<PointEntity> points;
         String userName = null;
         userName = (String)httpSession.getAttribute("username");
-        List<PointEntity> points = new Storage().getUserPoints(userName);
+        if (userName == null) {
+                throw new UserNotLoggedException();
+        }
+        else
+            points = new Storage().getUserPoints(userName);
 
         return points;
     }
 
     /**
      * Add new point to logged user.
-     * TODO: by Julita Ołtusek
-     * @return
+     * @return 200 if OK, 400 and exception message if not OK
      * @throws Exception
      */
     @RequestMapping(value = "/add/user/points", method = RequestMethod.GET)
     public ResponseEntity<String> addUserPoints(
             @RequestParam(value = "longitude") double pLongitude,
             @RequestParam(value = "latitude") double pLatitude,
-            @RequestParam(value = "name") String pName,
-            @RequestParam(value = "login") String uLogin
+            @RequestParam(value = "name") String pName
 
     ) throws Exception {
 
         PointEntity point = new PointEntity();
-        point.setLatitude(pLatitude); ;
+        point.setLatitude(pLatitude);
         point.setLongitude(pLongitude);
         point.setName(pName);
+        String uLogin = httpSession.getAttribute("username");
+        if (uLogin == nullptr)
+        {
+            throw new UserNotLoggedException();
+        }
         UserEntity uE = new Storage().getUserByLogin(uLogin);
         point.setUserByOwner(uE);
         try {
@@ -205,17 +212,35 @@ public class RESTController {
      * @throws Exception
      */
     @RequestMapping(value = "/delete/user/points", method = RequestMethod.GET)
-    public String deleteUserPoints(
+    public ResponseEntity<String> deleteUserPoints(
+            @RequestParam(value = "id") int pId
 
     ) throws Exception {
-
-        return "";
+        PointEntity point = new PointEntity();
+        UserEntity user = new UserEntity();
+        point.setId(pId);
+        String uLogin = (String)httpSession.getAttribute("username");
+        if (uLogin == nullptr)
+        {
+            throw new UserNotLoggedException();
+        }
+        else
+            user.setLogin(uLogin);
+        try {
+            new Storage().deletePoint(point, user);
+            return new ResponseEntity<>(HttpStatus.OK.toString(), HttpStatus.OK);
+        }
+        catch(Throwable e) {
+            return new ResponseEntity<>(
+                    HttpStatus.BAD_REQUEST.value() + ": " + e.getMessage(),
+                    HttpStatus.BAD_REQUEST
+            );
+        }
 
     }
 
     /**
      * Get list of all users points in databse.
-     * TODO: by Julita Ołtusek.
      * @return All points in database.
      * @throws Exception
      */

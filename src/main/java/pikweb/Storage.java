@@ -6,7 +6,6 @@ import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.query.Query;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -198,26 +197,32 @@ public class Storage {
      * @param point Point to delete.
      * @throws InvalidLoginException thrown if user credentials are invalid
      */
-    public void deletePoint(PointEntity point) throws InvalidLoginException {
+    public void deletePoint(PointEntity point, UserEntity user) throws InvalidIdException {
         final Session session = getSession();
         session.beginTransaction();
         try {
-            final Query byName = session.createQuery("from " + "PointEntity" + " where id = :id");
-            byName.setParameter("id", point.getId());
-            List<PointEntity> ul = byName.list();
-            if(ul.isEmpty()) {
-                throw new InvalidLoginException();
+            String login = user.getLogin();
+            PointEntity pointFound = session.get(PointEntity.class, point.getId());
+
+            //final Query byId = session.createQuery("from " + "PointEntity" + " where id = :id");
+            //byId.setParameter("id", point.getId());
+            //List<PointEntity> ul = byId.list();
+
+            if (!pointFound.getUserByOwner().getLogin().equals(login)) {
+                throw new InvalidIdException();
             }
+
             else {
-                ul.forEach( u -> {
-                            session.delete(u);
-                        }
-                );
+                session.delete(pointFound);
                 session.getTransaction().commit();
             }
-        } finally {
+        }
+        catch(NullPointerException e) {
+        }
+        finally {
             session.close();
         }
+
     }
 
     public UserEntity getUserByLogin(String uLogin) throws Exception {
@@ -232,7 +237,6 @@ public class Storage {
             session.close();
         }
     }
-
 
 
 }

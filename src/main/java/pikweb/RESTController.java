@@ -183,7 +183,7 @@ public class RESTController {
         point.setLongitude(pLongitude);
         point.setName(pName);
         String uLogin = (String)httpSession.getAttribute("username");
-        if (uLogin == nullptr)
+        if (uLogin == null)
         {
             throw new UserNotLoggedException();
         }
@@ -219,7 +219,7 @@ public class RESTController {
         UserEntity user = new UserEntity();
         point.setId(pId);
         String uLogin = (String)httpSession.getAttribute("username");
-        if (uLogin == nullptr)
+        if (uLogin == null)
         {
             throw new UserNotLoggedException();
         }

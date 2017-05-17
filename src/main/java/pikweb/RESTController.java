@@ -182,7 +182,7 @@ public class RESTController {
         point.setLatitude(pLatitude);
         point.setLongitude(pLongitude);
         point.setName(pName);
-        String uLogin = httpSession.getAttribute("username");
+        String uLogin = (String)httpSession.getAttribute("username");
         if (uLogin == nullptr)
         {
             throw new UserNotLoggedException();
@@ -207,8 +207,7 @@ public class RESTController {
 
     /**
      * Delete point of logged user.
-     * TODO: by Julita Ołtusek
-     * @return
+     * @return 200 if OK, 400 and exception message if not OK
      * @throws Exception
      */
     @RequestMapping(value = "/delete/user/points", method = RequestMethod.GET)

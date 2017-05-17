@@ -134,7 +134,10 @@ public class Storage {
     public List<PointEntity> getUserPoints(String username) throws Exception {
         final Session session = getSession();
         try {
-            final Query query = session.createQuery("from " + "PointEntity PE" + " where " + "UserEntity.login = username " + "and" + " PE.owner" + "=" + "user.id");
+            UserEntity user = getUserByLogin(username);
+            final Query query = session.createQuery("from " + "PointEntity PE" + " where " + "UserEntity.login = :username " + "and" + " PE.owner" + "=" + ":id");
+            query.setParameter("username", username);
+            query.setParameter("id", user.getId());
             List<PointEntity> ls = query.list();
             return ls;
         } finally {

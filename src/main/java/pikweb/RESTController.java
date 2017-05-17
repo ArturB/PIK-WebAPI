@@ -147,16 +147,18 @@ public class RESTController {
     /**
      * Return all points of logged user.
      * TODO: by Julita Ołtusek
-     * @return
+     * @return List of points of logged in user.
      * @throws Exception
      */
     @RequestMapping(value = "/get/user/points", method = RequestMethod.GET)
     public List<PointEntity> userPoints(
 
     ) throws Exception {
+        String userName = null;
+        userName = (String)httpSession.getAttribute("username");
+        List<PointEntity> points = new Storage().getUserPoints(userName);
 
-        return new ArrayList<PointEntity>();
-
+        return points;
     }
 
     /**
@@ -166,11 +168,33 @@ public class RESTController {
      * @throws Exception
      */
     @RequestMapping(value = "/add/user/points", method = RequestMethod.GET)
-    public String addUserPoints(
+    public ResponseEntity<String> addUserPoints(
+            @RequestParam(value = "longitude") double pLongitude,
+            @RequestParam(value = "latitude") double pLatitude,
+            @RequestParam(value = "name") String pName,
+            @RequestParam(value = "login") String uLogin
 
     ) throws Exception {
 
-        return "";
+        PointEntity point = new PointEntity();
+        point.setLatitude(pLatitude); ;
+        point.setLongitude(pLongitude);
+        point.setName(pName);
+        UserEntity uE = new Storage().getUserByLogin(uLogin);
+        point.setUserByOwner(uE);
+        try {
+            new Storage().addPoint(point);
+            return new ResponseEntity<>(
+                    HttpStatus.OK.toString(),
+                    HttpStatus.OK
+            );
+        }
+         catch(Throwable e) {
+            return new ResponseEntity<>(
+                    HttpStatus.BAD_REQUEST.value() + ": " + e.getMessage(),
+                    HttpStatus.BAD_REQUEST
+            );
+        }
 
     }
 
@@ -192,15 +216,15 @@ public class RESTController {
     /**
      * Get list of all users points in databse.
      * TODO: by Julita Ołtusek.
-     * @return
+     * @return All points in database.
      * @throws Exception
      */
     @RequestMapping(value = "/get/points", method = RequestMethod.GET)
     public List<PointEntity> getPoints(
 
     ) throws Exception {
-
-        return new ArrayList<PointEntity>();
+        List<PointEntity> points = new Storage().getAllPoints();
+        return points;
 
     }
 

@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.util.ArrayList;
 import java.util.List;
 
 
@@ -151,16 +150,14 @@ public class RESTController {
      */
     @RequestMapping(value = "/get/user/points", method = RequestMethod.GET)
     public List<PointEntity> userPoints(
-
     ) throws Exception {
-        List<PointEntity> points;
-        String userName = null;
-        userName = (String)httpSession.getAttribute("username");
-        if (userName == null) {
-                throw new UserNotLoggedException();
-        }
-        else
+        List<PointEntity> points = null;
+        String userName;
+        try {
+            userName = (String)httpSession.getAttribute("username");
             points = new Storage().getUserPoints(userName);
+        }
+        catch(UserNotLoggedException e) {}
 
         return points;
     }
@@ -175,6 +172,7 @@ public class RESTController {
             @RequestParam(value = "longitude") double pLongitude,
             @RequestParam(value = "latitude") double pLatitude,
             @RequestParam(value = "name") String pName
+
 
     ) throws Exception {
 

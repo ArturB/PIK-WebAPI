@@ -23,8 +23,12 @@
     <schema id="7" parent="2" name="information_schema">
       <ObjectId>12113</ObjectId>
     </schema>
-    <schema id="8" parent="2" name="pik">
-      <ObjectId>16401</ObjectId>
+    <schema id="8" parent="2" name="public">
+      <ObjectId>2200</ObjectId>
+      <Current>1</Current>
+    </schema>
+    <schema id="9" parent="2" name="pik">
+      <ObjectId>16393</ObjectId>
     </schema>
   </database-model>
 </dataSource>

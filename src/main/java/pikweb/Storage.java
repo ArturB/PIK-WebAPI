@@ -6,6 +6,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.query.Query;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -134,12 +135,14 @@ public class Storage {
     public List<PointEntity> getUserPoints(String username) throws Exception {
         final Session session = getSession();
         try {
-            UserEntity user = getUserByLogin(username);
-            final Query query = session.createQuery("from " + "PointEntity PE" + " where " + "UserEntity.login = :username " + "and" + " PE.owner" + "=" + ":id");
-            query.setParameter("username", username);
-            query.setParameter("id", user.getId());
+            final Query query = session.createQuery("from PointEntity ");
             List<PointEntity> ls = query.list();
-            return ls;
+            List<PointEntity> result = new ArrayList<PointEntity>();
+            ls.forEach( u-> {
+                if (u.getUserByOwner().getLogin().equals(username))
+                    result.add(u);
+            });
+            return result;
         } finally {
             session.close();
         }

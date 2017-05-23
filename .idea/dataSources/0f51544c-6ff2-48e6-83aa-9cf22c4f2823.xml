@@ -29,6 +29,7 @@
     </schema>
     <schema id="9" parent="2" name="pik">
       <ObjectId>16393</ObjectId>
+      <Current>1</Current>
     </schema>
   </database-model>
 </dataSource>

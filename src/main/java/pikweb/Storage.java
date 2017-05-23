@@ -135,9 +135,14 @@ public class Storage {
     public List<PointEntity> getUserPoints(String username) throws Exception {
         final Session session = getSession();
         try {
-            final Query query = session.createQuery("from " + "PointEntity PE" + " where " + "UserEntity.login = username " + "and" + " PE.owner" + "=" + "user.id");
+            final Query query = session.createQuery("from PointEntity ");
             List<PointEntity> ls = query.list();
-            return ls;
+            List<PointEntity> result = new ArrayList<PointEntity>();
+            ls.forEach( u-> {
+                if (u.getUserByOwner().getLogin().equals(username))
+                    result.add(u);
+            });
+            return result;
         } finally {
             session.close();
         }
@@ -198,26 +203,32 @@ public class Storage {
      * @param point Point to delete.
      * @throws InvalidLoginException thrown if user credentials are invalid
      */
-    public void deletePoint(PointEntity point) throws InvalidLoginException {
+    public void deletePoint(PointEntity point, UserEntity user) throws InvalidIdException {
         final Session session = getSession();
         session.beginTransaction();
         try {
-            final Query byName = session.createQuery("from " + "PointEntity" + " where id = :id");
-            byName.setParameter("id", point.getId());
-            List<PointEntity> ul = byName.list();
-            if(ul.isEmpty()) {
-                throw new InvalidLoginException();
+            String login = user.getLogin();
+            PointEntity pointFound = session.get(PointEntity.class, point.getId());
+
+            //final Query byId = session.createQuery("from " + "PointEntity" + " where id = :id");
+            //byId.setParameter("id", point.getId());
+            //List<PointEntity> ul = byId.list();
+
+            if (!pointFound.getUserByOwner().getLogin().equals(login)) {
+                throw new InvalidIdException();
             }
+
             else {
-                ul.forEach( u -> {
-                            session.delete(u);
-                        }
-                );
+                session.delete(pointFound);
                 session.getTransaction().commit();
             }
-        } finally {
+        }
+        catch(NullPointerException e) {
+        }
+        finally {
             session.close();
         }
+
     }
 
     public UserEntity getUserByLogin(String uLogin) throws Exception {
@@ -232,7 +243,6 @@ public class Storage {
             session.close();
         }
     }
-
 
 
 }

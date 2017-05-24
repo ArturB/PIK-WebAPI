@@ -176,6 +176,7 @@ function fKontrolerZaloguj($scope,$http,$cookies,$location) {
           $location.path('mapa'); //przeniesienie do podstrony mapy
       }, function errorCallback(response) { //porazka
         $scope.msg="Niepoprawny login lub haslo.";
+        $scope.col="red";
     });
 
   }
@@ -198,13 +199,18 @@ function fKontrolerRejestracja($scope,$http,$cookies) {
       var res = $http.get(url);
       res.then(function successCallback(response) {
         $scope.msg="Dodano uzytkownika. Mozesz sie teraz zalogowac.";
+        $scope.col="green";
       
       }, function errorCallback(response) {
         $scope.msg="Taki uzytkownik juz istnieje w bazie!";
+        $scope.col="red";
       });
   
     }
-    else $scope.msg="Hasla nie sa zgodne.";
+    else {
+      $scope.msg="Hasla nie sa zgodne.";
+      $scope.col="red";
+    }
       
   }
 
@@ -259,10 +265,10 @@ function fKontrolerProfil($scope,$http,$cookies,$location) {
   function loadPoints() {
  
   
-   var result = $http.get("http://45.76.87.200/get/points"); //get/user/points
+   var result = $http.get("http://45.76.87.200/get/user/points"); //get/user/points
     result.then(function successCallback(response) {
 
-      $scope.msgload=response;
+      //$scope.msgload=response;
      
       for (i = 0; i < response.data.length; i++) {
       
@@ -292,8 +298,8 @@ function fKontrolerProfil($scope,$http,$cookies,$location) {
       
     
       }, function errorCallback(response) {
-        $scope.msgload="Problem z polaczeniem z serwerem.";
-        //$scope.msgload=response;
+        //$scope.msgload="Problem z polaczeniem z serwerem.";
+        $scope.msgload=response;
       });
     
     }
@@ -301,6 +307,7 @@ function fKontrolerProfil($scope,$http,$cookies,$location) {
     window.onload = loadPoints();
   
     $scope.usun = function(a) {
+    
       var url="http://45.76.87.200/delete/user/points?id="+a;
       var res = $http.get(url);
       res.then(function successCallback(response) {
@@ -313,23 +320,59 @@ function fKontrolerProfil($scope,$http,$cookies,$location) {
       
     }
     
-    
     $scope.usunkonto = function() {
-      var url="http://45.76.87.200/delete/user?login="+$scope.login + "&passhash=" + $scope.pass;
-      var res = $http.get(url);
+    
+      //sprawdzenie hasla!
+      var url2="http://45.76.87.200/login/user?login="+$scope.login+"&passhash="+ $scope.pass+"&jsonp=JSON_CALLBACK";
+
+      $http({
+        method: 'GET',
+        url: url2,
+        withCredentials: true
+        }).then(function successCallback(response) { //sukces
+        $scope.usunpunkty();
+        }, function errorCallback(response) { //porazka
+      });
+    
+    } //usunkonto
+    
+    $scope.usunpunkty = function() {
+      var i;
+      var res;
+      
+      //najpierw usuwamy punkty
+      for (i = 0; i < $scope.marker2.length; ++i) {
+        var url="http://45.76.87.200/delete/user/points?id="+$scope.marker2[i].id;
+        res = $http.get(url);
+      }
       
       res.then(function successCallback(response) {
+        $scope.usunsamokonto();
+      }, function errorCallback(response) { //porazka
+      
+     
+      });
+    
+    }    
+    
+    
+    $scope.usunsamokonto = function() {
+      var url="http://45.76.87.200/delete/user?login="+$scope.login + "&passhash=" + $scope.pass;
+      var res2 = $http.get(url);
+      
+      res2.then(function successCallback(response) {
       $cookies.log = 0;
       $cookies.login="";
       $location.path('zaloguj');
       
       }, function errorCallback(response) {
-        $scope.msgdelprofil="Niepoprawne hasło";
+        $scope.msgdelprofil="Blad. Upewnij sie, czy masz polaczenie z internetem!";
       });
-      
-
-    
+        
     }
+    
+        
+
 
 
 

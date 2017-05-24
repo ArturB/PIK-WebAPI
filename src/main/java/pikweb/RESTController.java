@@ -150,12 +150,13 @@ public class RESTController {
      */
     @RequestMapping(value = "/get/user/points", method = RequestMethod.GET)
     public List<PointEntity> userPoints(
+            @RequestParam(value = "login") String name
     ) throws Exception {
         List<PointEntity> points = null;
-        String userName;
+        //String userName;
         try {
-            userName = (String)httpSession.getAttribute("username");
-            points = new Storage().getUserPoints(userName);
+            //userName = (String)httpSession.getAttribute("username");
+            points = new Storage().getUserPoints(name);
         }
         catch(UserNotLoggedException e) {}
 

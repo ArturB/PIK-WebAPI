@@ -980,7 +980,7 @@
       <workItem from="1495006558022" duration="2079000" />
       <workItem from="1495567601679" duration="57000" />
       <workItem from="1495639383184" duration="2536000" />
-      <workItem from="1495664519557" duration="228000" />
+      <workItem from="1495664519557" duration="260000" />
     </task>
     <task id="LOCAL-00001" summary="Initial commit">
       <created>1490397280031</created>
@@ -1112,7 +1112,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="34351000" />
+    <option name="totallyTimeSpent" value="34383000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1938" height="1048" extended-state="6" />
@@ -1170,7 +1170,8 @@
     <MESSAGE value="front end integrated" />
     <MESSAGE value="pik-front" />
     <MESSAGE value="pik-postgres passwd" />
-    <option name="LAST_COMMIT_MESSAGE" value="pik-postgres passwd" />
+    <MESSAGE value="frontend deleting users" />
+    <option name="LAST_COMMIT_MESSAGE" value="frontend deleting users" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
